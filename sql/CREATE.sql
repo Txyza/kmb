@@ -1,65 +1,68 @@
-drop table if exists "Users" cascade;
-drop table if exists "Roles" cascade;
-drop table if exists "Products" cascade;
-drop table if exists "Sales" cascade;
-drop table if exists "Detailed_product_description" cascade;
-drop table if exists "Point_of_sale" cascade;
-drop table if exists "Products_at_point_of_sale" cascade;
-drop table if exists "Point_of_sale_description" cascade;
+DROP TABLE IF EXISTS "Users" CASCADE;
+DROP TABLE IF EXISTS "Roles" CASCADE;
+DROP TABLE IF EXISTS "Products" CASCADE;
+DROP TABLE IF EXISTS "Sales" CASCADE;
+DROP TABLE IF EXISTS "Detailed_product_description" CASCADE;
+DROP TABLE IF EXISTS "Point_of_sale" CASCADE;
+DROP TABLE IF EXISTS "Products_at_point_of_sale" CASCADE;
+DROP TABLE IF EXISTS "Descrip_point_of_sale" CASCADE;
 
-create table if not exists "Users" ( 
+CREATE TABLE IF NOT EXISTS "Users" ( 
 	"id_user" serial not null,
 	"name" text not null,
 	"id_role" int not null,
-	primary key ("id_user")
+	PRIMARY KEY ("id_user")
 );
 
-create table if not exists "Roles" ( 
+CREATE TABLE IF NOT EXISTS "Roles" ( 
 	"id_role" serial not null,
 	"name" text not null,
-	primary key ("id_role")
+	PRIMARY KEY ("id_role")
 );
 
-create table if not exists "Products" ( 
+CREATE TABLE IF NOT EXISTS "Products" ( 
 	"id_it" serial not null,
 	"name" text not null,
 	"price" money not null,
 	"amount" int not null,
-	primary key ("id_it")
+	PRIMARY KEY ("id_it")
 );
 
-create table if not exists "Sales" ( 
+CREATE TABLE IF NOT EXISTS "Sales" ( 
 	"id_sales" serial not null,
 	"id_seller" int not null,
 	"id_customer" int not null,
 	"price" money not null,
 	"amount" int not null,
 	"id_wh" int not null,
-	primary key ("id_sales")
+	PRIMARY KEY ("id_sales")
 );
 
-create table if not exists "Detailed_product_description" ( 
+CREATE TABLE IF NOT EXISTS "Detailed_product_description" ( 
 	"id_it" int not null,
 	"product_photo" text not null,
 	"descrip" text not null
 );
 
-create table if not exists "Point_of_sale" ( 
+CREATE TABLE IF NOT EXISTS "Point_of_sale" ( 
 	"id_wh" serial not null,
 	"name" text not null,
-	primary key ("id_wh")
+	PRIMARY KEY ("id_wh")
 );
 
-create table if not exists "Products_at_point_of_sale" ( 
+CREATE TABLE IF NOT EXISTS "Products_at_point_of_sale" ( 
 	"id_wh" int not null,
 	"id_it" int not null,
 	"amount" int not null
 );
 
-create table if not exists "Point_of_sale_description" ( 
+CREATE TABLE IF NOT EXISTS "Descrip_point_of_sale" ( 
 	"id_wh" int not null,
-	"descrip" text not null
+	"decrip" text not null
 );
 
-alter table "Users" 
-	add constraint "User_role_fk" foreign key ("id_role") references "Roles" ("id_role");
+ALTER TABLE "Users" 
+	ADD CONSTRAINT "User_role_fk" FOREIGN KEY ("id_role") REFERENCES "Roles" ("id_role");
+
+/*ALTER TABLE "Sales" 
+	ADD CONSTRAINT "Sale_price_fk" FOREIGN KEY ("price") REFERENCES "Products" ("price");*/
