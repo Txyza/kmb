@@ -31,18 +31,26 @@ from "Sales" s
 	
 /*Вывести всю информацию о товаре.*/
 select 
-  id_it as "id Товара",
-  product_photo as "Фото товара",
-  descrip as "Описание товара"
-from "Detailed_product_description";
+  prod.id_it as "id Товара",
+  prod.name as "Название товара",
+  dpd.product_photo as "Фото товара",
+  dpd.descrip as "Описание товара",
+  prod.price as "Цена товара",
+  prod.amount as "Количество всего",
+  pp.id_wh as "Точка продаж",
+  pp.amount as "Количество на точке"
+from "Products" prod
+  left join "Detailed_product_description" dpd on prod.id_it = dpd.id_it
+  left join "Products_at_point_of_sale" pp on prod.id_it = pp.id_it;
 	
 /*Вывести всю информацию о точке продаж.*/
 select 
   p.id_wh as "id Точки продаж",
   p.name as "Имя точки продаж",
+  pd.descrip as "Описание точки продаж",
   pp.id_it as "Товар",
   pp.amount as "Количество"
 from "Point_of_sale" p 
-  join "Products_at_point_of_sale" pp on p.id_wh = pp.id_wh
-where p.id_wh = 1;
+  left join "Products_at_point_of_sale" pp on p.id_wh = pp.id_wh
+  left join "Point_of_sale_description" pd on p.id_wh = pd.id_wh;
 
