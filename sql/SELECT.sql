@@ -1,15 +1,15 @@
-SELECT * FROM "Users";
+select * from "Users";
 
-SELECT * FROM "Roles";
+select * from "Roles";
 
-SELECT * FROM "Products";
+select * from "Products";
 
-SELECT * FROM "Sales";
+select * from "Sales";
 
-SELECT * FROM "Detailed_product_description";
+select * from "Detailed_product_description";
 
-SELECT * FROM "Point_of_sale";
+select * from "Point_of_sale";
 
-SELECT * FROM "Products_at_point_of_sale";
+select * from "Products_at_point_of_sale";
 
-SELECT * FROM "Descrip_point_of_sale";
+select * from "Descrip_point_of_sale";
