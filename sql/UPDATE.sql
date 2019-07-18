@@ -7,10 +7,16 @@ set id_role = 2
 where name = 'Катя';
 
 alter table "Users"
-  add column amount_of_money money;
+  add column amount_of_money numeric;
 
 alter table "Point_of_sale"
   add column id_customer int;
+
+ alter table "Products" 
+   alter column price type numeric;
+
+alter table "Sales" 
+  alter column price type numeric;
 
 update "Point_of_sale"
   set id_seller = 1
